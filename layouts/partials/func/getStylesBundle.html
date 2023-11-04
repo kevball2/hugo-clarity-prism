@@ -1,6 +1,10 @@
 <!-- styles definition-->
 {{ $options := (dict "targetPath" "css/styles.css" "outputStyle" "compressed" "enableSourceMap" "true") }}
 {{ $mainSassFile :=  "sass/main.sass" }}
-{{ $styles := resources.Get $mainSassFile | resources.ExecuteAsTemplate $mainSassFile . | resources.ToCSS $options | resources.Fingerprint "sha512" }}
+{{ $mainStyles := resources.Get $mainSassFile | resources.ExecuteAsTemplate $mainSassFile . | resources.ToCSS $options }}
 
+{{ $prismCssFile :=  "css/prism.css" }}
+{{ $prismStyles := resources.Get $prismCssFile }}
+
+{{ $styles := slice $mainStyles $prismStyles | resources.Concat "css/bundle.css" | resources.Fingerprint "sha512" }}
 {{ return $styles }}

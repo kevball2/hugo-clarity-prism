@@ -109,6 +109,47 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 </html>
 ```
 
+#### Code block with Hugo's internal highlight shortcode Testing
+{{< highlight bicep >}}
+param test string = 'something'
+
+  type subscriptionTagValues = {
+    @description('Required. Environment for deployed resources')
+    environment: 'dev'| 'qa' | 'prod'
+    @description('Required. Project Number for subscription')
+    projectNumber: string
+    @description('Required. Are backups required for this subscription')
+    backupRequired: 'True' | 'False'
+    @description('Optional. backup retention options')
+    backupRetentiond: ''|'1-Week'|'2-Week'|'1-Month'|'2-Month'|'1-Year'
+    @description('Optional. What day for backups to run')
+    backupWindow: ''|'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday'
+    *:string
+  }
+  param subscriptionTags subscriptionTagValues
+{{< /highlight >}}
+
+Bicep back ticks
+
+```Bicep
+  param test string = 'something'
+
+  type subscriptionTagValues = {
+    @description('Required. Environment for deployed resources')
+    environment: 'dev'| 'qa' | 'prod'
+    @description('Required. Project Number for subscription')
+    projectNumber: string
+    @description('Required. Are backups required for this subscription')
+    backupRequired: 'True' | 'False'
+    @description('Optional. backup retention options')
+    backupRetentiond: ''|'1-Week'|'2-Week'|'1-Month'|'2-Month'|'1-Year'
+    @description('Optional. What day for backups to run')
+    backupWindow: ''|'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday'
+    *:string
+  }
+  param subscriptionTags subscriptionTagValues
+```
+
 #### Code block indented with four spaces
 
     <!doctype html>
